@@ -11,6 +11,18 @@ npm install
 npm run dev        # http://localhost:3000  (o -p 3001)
 ```
 
+## Páginas
+
+| Ruta | Contenido |
+| --- | --- |
+| `/` | Landing completa (hero, sedes, bento horizontal, túnel, comunidad, valores, insta) |
+| `/forma-de-trabajar` | Hero amarillo con cuadrícula, manifiesto, "Qué significa para ti", valores |
+| `/comunidad` | Hero foto + manifiesto rojo, marquee, eventos, espacios compartidos |
+| `/contacto` | Página verde: mapa ilustrado, datos de contacto y formulario |
+
+El Sidebar, la Newsletter y el Footer viven en `app/layout.tsx` y se comparten
+entre todas las páginas. La tarjeta activa del sidebar se resalta según la ruta.
+
 ## Estructura
 
 | Sección | Componente |

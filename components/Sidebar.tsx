@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { EASE } from "./Reveal";
 import {
@@ -14,15 +16,15 @@ import {
 } from "./icons";
 
 const NAV = [
-  { n: "01", label: "Espacios", href: "#espacios", bg: "bg-blue" },
-  { n: "02", label: "Todo incluido", href: "#todo-incluido", bg: "bg-yellow" },
-  { n: "03", label: "Comunidad", href: "#comunidad", bg: "bg-orange" },
-  { n: "04", label: "Contacto", href: "#contacto", bg: "bg-green" },
+  { n: "01", label: "Espacios", href: "/", bg: "bg-blue" },
+  { n: "02", label: "Cómo trabajamos", href: "/forma-de-trabajar", bg: "bg-yellow" },
+  { n: "03", label: "Comunidad", href: "/comunidad", bg: "bg-orange" },
+  { n: "04", label: "Contacto", href: "/contacto", bg: "bg-green" },
 ];
 
 function Wordmark({ compact = false }: { compact?: boolean }) {
   return (
-    <a href="#inicio" className="block select-none">
+    <Link href="/" className="block select-none">
       <span
         className={`block font-black leading-none tracking-[-0.045em] ${
           compact ? "text-[26px]" : "text-[38px]"
@@ -37,36 +39,49 @@ function Wordmark({ compact = false }: { compact?: boolean }) {
       >
         Espacios de trabajo únicos
       </span>
-    </a>
+    </Link>
   );
 }
 
 function NavCard({
   item,
   index,
+  active,
   onClick,
   className = "",
 }: {
   item: (typeof NAV)[number];
   index: number;
+  active: boolean;
   onClick?: () => void;
   className?: string;
 }) {
   return (
-    <motion.a
-      href={item.href}
-      onClick={onClick}
+    <motion.div
       initial={{ opacity: 0, x: -28 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.15 + index * 0.09, duration: 0.6, ease: EASE }}
-      className={`${item.bg} group relative flex flex-col justify-between overflow-hidden rounded-2xl p-3.5 transition-transform duration-300 ease-out hover:scale-[1.03] active:scale-[0.98] ${className}`}
+      className={`flex ${className}`}
     >
-      <div className="flex items-start justify-between">
-        <span className="text-[13px] font-bold">{item.n}</span>
-        <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      </div>
-      <span className="text-[15px] font-bold leading-tight">{item.label}</span>
-    </motion.a>
+      <Link
+        href={item.href}
+        onClick={onClick}
+        aria-current={active ? "page" : undefined}
+        className={`group relative flex w-full flex-col justify-between overflow-hidden rounded-2xl p-3.5 transition-transform duration-300 ease-out hover:scale-[1.03] active:scale-[0.98] ${
+          active ? "bg-cream shadow-[inset_0_0_0_1.5px_#141414]" : item.bg
+        }`}
+      >
+        <div className="flex items-start justify-between">
+          <span className="text-[13px] font-bold">{item.n}</span>
+          <ArrowUpRight
+            className={`size-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
+              active ? "rotate-45" : ""
+            }`}
+          />
+        </div>
+        <span className="text-[15px] font-bold leading-tight">{item.label}</span>
+      </Link>
+    </motion.div>
   );
 }
 
@@ -88,6 +103,10 @@ function SocialBar({ className = "" }: { className?: string }) {
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <>
@@ -103,7 +122,7 @@ export default function Sidebar() {
 
         <nav className="mt-5 flex flex-1 flex-col gap-3">
           {NAV.map((item, i) => (
-            <NavCard key={item.n} item={item} index={i} className="flex-1" />
+            <NavCard key={item.n} item={item} index={i} active={isActive(item.href)} className="flex-1" />
           ))}
         </nav>
 
@@ -113,12 +132,12 @@ export default function Sidebar() {
           transition={{ delay: 0.55, duration: 0.6, ease: EASE }}
           className="mt-3 space-y-2.5"
         >
-          <a
-            href="#contacto"
+          <Link
+            href="/contacto"
             className="block rounded-xl bg-purple px-3 py-3.5 text-center text-[14px] font-bold transition hover:brightness-110 active:scale-[0.98]"
           >
             Reserva tu puesto
-          </a>
+          </Link>
           <button
             type="button"
             className="flex w-full items-center justify-between rounded-full bg-ink px-4 py-3 text-[13px] font-semibold text-cream transition hover:text-yellow"
@@ -167,18 +186,25 @@ export default function Sidebar() {
 
             <nav className="mt-4 grid flex-1 grid-cols-2 gap-3">
               {NAV.map((item, i) => (
-                <NavCard key={item.n} item={item} index={i} onClick={() => setOpen(false)} className="min-h-32" />
+                <NavCard
+                  key={item.n}
+                  item={item}
+                  index={i}
+                  active={isActive(item.href)}
+                  onClick={() => setOpen(false)}
+                  className="min-h-32"
+                />
               ))}
             </nav>
 
             <div className="mt-4 space-y-3">
-              <a
-                href="#contacto"
+              <Link
+                href="/contacto"
                 onClick={() => setOpen(false)}
                 className="block rounded-2xl bg-purple px-4 py-4 text-center text-base font-bold"
               >
                 Reserva tu puesto
-              </a>
+              </Link>
               <div className="flex gap-3">
                 <button
                   type="button"

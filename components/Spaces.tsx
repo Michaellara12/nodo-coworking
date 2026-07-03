@@ -49,7 +49,7 @@ export default function Spaces() {
 
           <div className="mt-10">
             <a
-              href="#contacto"
+              href="/forma-de-trabajar"
               className="group inline-flex items-center gap-2.5 rounded-full bg-ink px-7 py-4 text-base font-bold text-white transition-colors duration-300 hover:bg-blue"
             >
               Conoce nuestros planes

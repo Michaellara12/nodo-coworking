@@ -4,7 +4,7 @@ import { ArrowUpRight } from "./icons";
 export default function WayRibbon() {
   return (
     <Reveal>
-      <a href="#todo-incluido" className="group relative block">
+      <a href="/forma-de-trabajar" className="group relative block">
         <div
           className="absolute inset-x-1 top-2.5 h-full rotate-[0.5deg] rounded-full bg-ink transition-transform duration-300 group-hover:rotate-[0.9deg]"
           aria-hidden

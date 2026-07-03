@@ -56,7 +56,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.85, duration: 0.8, ease: EASE }}
-            href="#contacto"
+            href="/contacto"
             className="group mt-9 inline-flex items-center gap-2.5 rounded-full bg-ink px-7 py-4 text-base font-bold text-white transition-colors duration-300 hover:bg-white hover:text-ink sm:text-lg"
           >
             Reserva tu puesto

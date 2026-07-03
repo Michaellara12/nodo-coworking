@@ -28,7 +28,7 @@ export default function Community() {
             libertad de sumarte cuando quieras y como quieras.
           </p>
           <a
-            href="#contacto"
+            href="/comunidad"
             className="group relative inline-flex w-fit items-center gap-2.5 overflow-hidden px-8 py-4 text-lg font-bold text-white"
             style={{ borderRadius: "48% 52% 55% 45% / 58% 46% 54% 42%" }}
           >
