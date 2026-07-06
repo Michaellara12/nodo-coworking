@@ -74,8 +74,9 @@ export default function WhyDifferentStack() {
   const ref = useRef<HTMLElement>(null);
   const p = usePinnedProgress(ref);
 
+  /* más altura = la misma animación repartida en más scroll (más lenta) */
   return (
-    <section ref={ref} className="relative h-[240svh]">
+    <section ref={ref} className="relative h-[400svh]">
       <div className="sticky top-0 flex h-svh flex-col py-4 sm:py-5">
         <div className="flex items-center justify-between gap-4 px-2 pb-4 sm:pb-5">
           <BouncingArrows />
