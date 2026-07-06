@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- el ojo del espía de Innfiltrados -->
+  <path
+    d="M5 52 Q 50 6, 95 52 Q 50 94, 5 52 Z"
+    fill="#ffffff"
+    stroke="#141414"
+    stroke-width="9"
+    stroke-linejoin="round"
+  />
+  <ellipse cx="50" cy="49" rx="16" ry="17" fill="#141414" />
+</svg>

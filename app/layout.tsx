@@ -15,9 +15,7 @@ export const metadata: Metadata = {
   },
   description:
     "El backstage de las empresas líderes, abierto para ti. Misiones de inmersión empresarial en Colombia y el mundo: aprende del conocimiento de otros y vuelve con un plan.",
-  icons: {
-    icon: "/images/innfiltrados/espia-v2.png",
-  },
+  /* favicon: el ojo del espía — app/icon.svg y app/favicon.ico (convención de Next) */
 };
 
 export default function RootLayout({
