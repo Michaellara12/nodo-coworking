@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useMotionValueEvent, useTransform } from "framer-motion";
 import KaraokeText from "./KaraokeText";
 import PlantIllustration from "./PlantIllustration";
+import { usePinnedProgress } from "./usePinnedProgress";
 
 /*
  * Hero scrollytelling (pineado + scrub), como el original:
@@ -11,7 +12,7 @@ import PlantIllustration from "./PlantIllustration";
  */
 
 const MANIFIESTO =
-  "Creemos que trabajar debería sentirse natural, no provisional. Funcional, pero también personal. Social, sin forzarlo. Por eso diseñamos espacios que acompañan tu día, crean lugar para conectar y le quitan la fricción a todo lo demás. Porque trabajar no debería sentirse como un sacrificio. Debería sentirse en su punto.";
+  "Creemos que la mejor escuela no tiene salones: tiene plantas de producción, bodegas y oficinas ajenas. Que un día dentro de la empresa correcta vale más que un semestre de teoría. Por eso abrimos el backstage de las compañías líderes, curamos cada visita con objetivos claros y convertimos lo aprendido en un plan que se ejecuta. Porque viajar sin método es turismo. Innfiltrarse es volver con ventaja.";
 
 /* globo pixel: B = borde negro, # = relleno rojo */
 const BLOB = [
@@ -68,10 +69,10 @@ function PixelSvg({ matrix, colors, className, opacity = 1 }: {
 }
 
 function HouseGlyph({ className = "" }: { className?: string }) {
+  /* espía de la marca como glifo del título */
   return (
-    <svg viewBox="0 0 48 44" className={className} aria-hidden>
-      <path d="M24 2 46 22h-6v20H8V22H2L24 2Z" fill="#141414" />
-    </svg>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src="/images/innfiltrados/espia-v2.png" alt="" className={className} aria-hidden />
   );
 }
 
@@ -124,34 +125,37 @@ function KeysIllustration() {
 
 export default function CinematicHero() {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress: p } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  const p = usePinnedProgress(ref);
 
-  /* fondo: amarillo → naranja → rojo */
-  const bg = useTransform(p, [0, 0.14, 0.26, 0.44, 0.55], ["#ffb200", "#ffb200", "#ff6100", "#e6313a", "#e6313a"]);
+  /* fondo: amarillo → naranja → rojo (mismo ritmo del original en px de scroll) */
+  const bg = useTransform(p, [0, 0.097, 0.181, 0.306, 0.383], ["#ffb200", "#ffb200", "#ff6100", "#e6313a", "#e6313a"]);
 
-  /* fase A: título */
-  const titleOpacity = useTransform(p, [0, 0.12, 0.2], [1, 1, 0]);
-  const titleScale = useTransform(p, [0, 0.2], [1, 0.9]);
-  const titleY = useTransform(p, [0, 0.2], [0, -80]);
+  /* fase A: título (fade por estado + CSS para evitar el secuestro WAAPI del binding) */
+  const [titleHidden, setTitleHidden] = useState(false);
+  useMotionValueEvent(p, "change", (v) => setTitleHidden(v > 0.104));
+  const titleScale = useTransform(p, [0, 0.139], [1, 0.9]);
+  const titleY = useTransform(p, [0, 0.139], [0, -80]);
 
-  /* fase B: globo pixel con statement */
-  const blobOpacity = useTransform(p, [0.16, 0.22, 0.38, 0.45], [0, 1, 1, 0]);
-  const blobScale = useTransform(p, [0.16, 0.26, 0.45], [0.35, 1, 1.25]);
+  /* fase B: globo pixel con statement (mismo ritmo del original) */
+  const blobOpacity = useTransform(p, [0.111, 0.153, 0.264, 0.313], [0, 1, 1, 0]);
+  const blobScale = useTransform(p, [0.111, 0.181, 0.313], [0.35, 1, 1.25]);
 
-  /* fase C: smiley + ticker horizontal */
-  const smileyOpacity = useTransform(p, [0.44, 0.5, 0.6, 0.66], [0, 1, 1, 0]);
-  const smileyScale = useTransform(p, [0.44, 0.56], [0.3, 1]);
-  const tickerX = useTransform(p, [0.44, 0.66], ["105%", "-105%"]);
-  const tickerOpacity = useTransform(p, [0.44, 0.47, 0.62, 0.66], [0, 1, 1, 0]);
+  /* fase C: smiley + ticker horizontal — el doble de recorrido que el original */
+  const smileyOpacity = useTransform(p, [0.306, 0.389, 0.527, 0.61], [0, 1, 1, 0]);
+  const smileyScale = useTransform(p, [0.306, 0.472], [0.3, 1]);
+  const tickerX = useTransform(p, [0.306, 0.61], ["105%", "-105%"]);
+  const tickerOpacity = useTransform(p, [0.306, 0.347, 0.555, 0.61], [0, 1, 1, 0]);
 
-  /* fase D: manifiesto karaoke + mini-tarjetas */
-  const maniOpacity = useTransform(p, [0.66, 0.71], [0, 1]);
-  const card1Opacity = useTransform(p, [0.7, 0.73, 0.79, 0.82], [0, 1, 1, 0]);
-  const card2Opacity = useTransform(p, [0.79, 0.82, 0.88, 0.91], [0, 1, 1, 0]);
-  const card3Opacity = useTransform(p, [0.88, 0.91, 1, 1], [0, 1, 1, 1]);
+  /* fase D: manifiesto karaoke + mini-tarjetas — el doble de recorrido que el
+   * original, y termina en 0.88 para que el texto completo quede legible un
+   * tramo antes de que la sección se despinee */
+  const maniOpacity = useTransform(p, [0.6, 0.63], [0, 1]);
+  const card1Opacity = useTransform(p, [0.62, 0.65, 0.72, 0.75], [0, 1, 1, 0]);
+  const card2Opacity = useTransform(p, [0.72, 0.75, 0.82, 0.85], [0, 1, 1, 0]);
+  const card3Opacity = useTransform(p, [0.82, 0.85, 1, 1], [0, 1, 1, 1]);
 
   return (
-    <section ref={ref} className="relative h-[420svh]">
+    <section ref={ref} className="relative h-[560svh]">
       <div className="sticky top-0 flex h-svh flex-col justify-center py-4 sm:py-5">
         <motion.div
           style={{ backgroundColor: bg }}
@@ -168,16 +172,22 @@ export default function CinematicHero() {
           </svg>
 
           {/* fase A: título gigante */}
+          <div
+            className={`absolute inset-0 transition-opacity duration-500 ${
+              titleHidden ? "opacity-0" : "opacity-100"
+            }`}
+          >
           <motion.h1
-            style={{ opacity: titleOpacity, scale: titleScale, y: titleY }}
+            style={{ scale: titleScale, y: titleY }}
             className="absolute inset-0 flex flex-col justify-center px-[6%] text-[13.5vw] font-black leading-[0.92] tracking-[-0.03em] lg:text-[9.5vw]"
           >
             <span className="flex items-end gap-[2vw] self-start">
-              Nuestra forma
-              <HouseGlyph className="mb-[1.2vw] w-[3.2vw] min-w-8" />
+              Así funciona
+              <HouseGlyph className="mb-[1.2vw] w-[4vw] min-w-10" />
             </span>
-            <span className="self-end lg:mr-[2%]">de trabajar</span>
+            <span className="self-end lg:mr-[2%]">una misión</span>
           </motion.h1>
+          </div>
 
           {/* fase B: globo pixel */}
           <motion.div
@@ -192,11 +202,11 @@ export default function CinematicHero() {
               />
               <div className="relative max-w-[70%] text-center">
                 <p className="text-xl font-black leading-tight sm:text-3xl lg:text-4xl">
-                  Un nuevo enfoque del trabajo.
+                  Un nuevo enfoque del aprendizaje.
                 </p>
                 <p className="mt-3 hidden text-[15px] font-semibold leading-snug sm:block lg:text-lg">
-                  Construido alrededor de las personas, el día a día y un
-                  sentido real de pertenencia.
+                  Construido alrededor de empresas reales, retos reales y la
+                  gente que ya los resolvió.
                 </p>
               </div>
             </div>
@@ -218,7 +228,7 @@ export default function CinematicHero() {
             className="absolute inset-y-0 flex items-center"
           >
             <span className="whitespace-nowrap text-[11vw] font-black leading-none tracking-[-0.03em] lg:text-[8vw]">
-              Cómo pensamos el trabajo
+              Cómo pensamos las misiones
             </span>
           </motion.div>
 
@@ -231,8 +241,8 @@ export default function CinematicHero() {
               <KaraokeText
                 text={MANIFIESTO}
                 progress={p}
-                start={0.72}
-                end={0.97}
+                start={0.63}
+                end={0.88}
                 className="text-[22px] font-extrabold leading-[1.25] tracking-[-0.01em] sm:text-3xl lg:text-[40px]"
               />
             </div>

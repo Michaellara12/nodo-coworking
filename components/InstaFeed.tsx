@@ -3,10 +3,10 @@ import { Reveal } from "./Reveal";
 import { InstagramIcon } from "./icons";
 
 const POSTS = [
-  { src: "/images/insta-1.jpg", alt: "Sunset session con DJ en la terraza de NODO" },
-  { src: "/images/insta-2.jpg", alt: "Café de especialidad en la barra de NODO" },
-  { src: "/images/insta-3.jpg", alt: "Miembros de NODO trabajando en equipo" },
-  { src: "/images/insta-4.jpg", alt: "Zonas verdes y lounge de NODO" },
+  { src: "/images/innfiltrados/mision-1.jpg", alt: "Recorrido backstage por una planta de producción" },
+  { src: "/images/innfiltrados/mision-2.jpg", alt: "Sesión con líderes durante una misión" },
+  { src: "/images/insta-1.jpg", alt: "Noche de networking entre innfiltrados" },
+  { src: "/images/insta-4.jpg", alt: "Pausa entre recorridos de la misión" },
 ];
 
 export default function InstaFeed() {
@@ -25,12 +25,14 @@ export default function InstaFeed() {
         </div>
       </Reveal>
 
-      <Reveal delay={0.12}>
+      <Reveal delay={0.12} className="min-w-0">
         <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto scrollbar-hide">
           {POSTS.map((post, i) => (
             <a
               key={post.src}
-              href="#"
+              href="https://www.instagram.com/innfiltrados"
+              target="_blank"
+              rel="noreferrer"
               aria-label={`Ver publicación de Instagram: ${post.alt}`}
               className="group relative aspect-square w-[260px] shrink-0 snap-start overflow-hidden rounded-[24px] sm:w-[300px]"
             >
@@ -67,9 +69,9 @@ export default function InstaFeed() {
               <InstagramIcon className="size-6" />
             </span>
             <p className="relative text-2xl font-black leading-tight text-white">
-              Encuentra
+              Síguenos:
               <br />
-              tu spot ideal
+              @innfiltrados
             </p>
           </div>
         </div>

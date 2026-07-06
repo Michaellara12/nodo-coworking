@@ -5,9 +5,9 @@ import DefinesYellow from "@/components/DefinesYellow";
 import WhyDifferentStack from "@/components/WhyDifferentStack";
 
 export const metadata: Metadata = {
-  title: "Nuestra forma de trabajar",
+  title: "Cómo funciona",
   description:
-    "Un nuevo enfoque del trabajo: espacios pensados alrededor de las personas, el día a día y un sentido real de pertenencia.",
+    "Así funciona una misión Innfiltrados: diagnóstico, acceso backstage a empresas líderes, síntesis diaria y un playbook para ejecutar al volver.",
 };
 
 export default function FormaDeTrabajar() {

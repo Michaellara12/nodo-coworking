@@ -1,9 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
+import { motion, MotionValue, useTransform } from "framer-motion";
 import KaraokeText from "./KaraokeText";
 import { ArrowDown } from "./icons";
+import { usePinnedProgress } from "./usePinnedProgress";
 
 /*
  * "¿Por qué es diferente?": tarjetas a pantalla completa que se apilan una
@@ -11,9 +12,9 @@ import { ArrowDown } from "./icons";
  */
 
 const CARDS = [
-  { bg: "bg-green", text: "Porque está pensado alrededor de tu vida real." },
-  { bg: "bg-red", text: "Porque es más que un lugar donde trabajar." },
-  { bg: "bg-blue", text: "Porque sentirte en casa es lo que más importa." },
+  { bg: "bg-green", text: "Porque no es un tour: es una inmersión con objetivos." },
+  { bg: "bg-red", text: "Porque aprendes de quien ya resolvió lo que tú intentas resolver." },
+  { bg: "bg-blue", text: "Porque vuelves con un plan bajo el brazo, no con souvenirs." },
 ];
 
 function StackCard({
@@ -71,10 +72,10 @@ function BouncingArrows() {
 
 export default function WhyDifferentStack() {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress: p } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  const p = usePinnedProgress(ref);
 
   return (
-    <section ref={ref} className="relative h-[320svh]">
+    <section ref={ref} className="relative h-[240svh]">
       <div className="sticky top-0 flex h-svh flex-col py-4 sm:py-5">
         <div className="flex items-center justify-between gap-4 px-2 pb-4 sm:pb-5">
           <BouncingArrows />

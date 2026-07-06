@@ -1,3 +1,4 @@
+import Link from "next/link";
 import PixelArt from "./PixelArt";
 import SectionBanner from "./SectionBanner";
 import { Reveal } from "./Reveal";
@@ -50,20 +51,20 @@ const VALUES = [
   {
     matrix: SMILEY,
     color: "#0cb14e",
-    title: "Primero las personas",
-    body: "Todo empieza por cómo se siente trabajar aquí. De los puestos privados a las experiencias compartidas, la gente siempre va primero.",
+    title: "Curiosidad radical",
+    body: "Preguntamos lo que nadie se atreve. Las mejores respuestas del mundo empresarial están detrás de la puerta que dice “solo personal autorizado”.",
   },
   {
     matrix: BOLT,
     color: "#0e6be8",
-    title: "Diseño con intención",
-    body: "Nada es casualidad. Cada detalle está pensado para apoyar tu forma de trabajar y de sentirte, todos los días.",
+    title: "Aprender haciendo",
+    body: "Nada de teoría en salones. El conocimiento que sirve se ve, se toca y se conversa con quien lo construyó, dentro de la operación real.",
   },
   {
     matrix: HEART,
     color: "#e6313a",
-    title: "Cuidado de verdad",
-    body: "Está en el centro de todo lo que hacemos. Cuidamos a quienes trabajan aquí, los espacios que creamos y la ciudad de la que somos parte.",
+    title: "Generosidad de red",
+    body: "Compartimos contactos, hallazgos y errores. Lo que una empresa aprende en una misión, la comunidad entera lo capitaliza.",
   },
 ];
 
@@ -87,13 +88,13 @@ export default function DefinesYellow() {
       </div>
 
       <Reveal>
-        <a
-          href="/"
+        <Link
+          href="/#misiones"
           className="group flex items-center justify-center gap-2.5 rounded-full bg-ink px-7 py-5 text-lg font-bold text-white transition-colors duration-300 hover:bg-blue"
         >
-          Conoce nuestros espacios
+          Explora las misiones 2026
           <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-        </a>
+        </Link>
       </Reveal>
     </section>
   );

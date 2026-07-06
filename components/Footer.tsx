@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { EASE } from "./Reveal";
+import { SITE } from "@/lib/site";
 
 const PIXELS = [
   { left: "34%", top: "8%", color: "#ab54f7" },
@@ -14,7 +15,12 @@ const PIXELS = [
   { left: "5%", top: "30%", color: "#ffdb08" },
 ];
 
-const LINKS = ["FAQs", "Privacidad", "Cookies"];
+const LINKS = [
+  { label: "Plataforma", href: "/plataforma" },
+  { label: "Instagram", href: SITE.instagram },
+  { label: "LinkedIn", href: SITE.linkedin },
+  { label: "Política de datos", href: "#" },
+];
 
 export default function Footer() {
   return (
@@ -47,16 +53,16 @@ export default function Footer() {
         {/* wordmark gigante */}
         <div className="relative flex justify-center pb-8 pt-14 sm:pb-12 sm:pt-20">
           <h2
-            aria-label="nodo."
-            className="flex text-[26vw] font-black leading-[0.82] tracking-[-0.05em] lg:text-[17vw]"
+            aria-label="innfiltrados."
+            className="flex text-[11.5vw] font-black leading-[0.82] tracking-[-0.05em] lg:text-[8vw]"
           >
-            {[..."nodo."].map((ch, i) => (
+            {[..."innfiltrados."].map((ch, i) => (
               <motion.span
                 key={i}
                 initial={{ y: "45%", opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true, amount: 0.4 }}
-                transition={{ delay: i * 0.07, duration: 0.8, ease: EASE }}
+                transition={{ delay: i * 0.05, duration: 0.8, ease: EASE }}
                 className="inline-block"
               >
                 {ch}
@@ -68,19 +74,24 @@ export default function Footer() {
 
       <div className="relative mt-2 flex flex-col gap-5 pb-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-lg font-extrabold">© 2026 NODO Coworking</p>
+          <p className="text-lg font-extrabold">© 2026 Innfiltrados® — Todos los derechos reservados</p>
           <p className="mt-1 text-sm font-medium text-ink/70">
-            Marca imaginaria — hecha con cariño para experimentar.
+            {SITE.city} ·{" "}
+            <a href={SITE.phoneHref} className="underline-offset-4 hover:underline">
+              {SITE.phone}
+            </a>
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
           {LINKS.map((link) => (
             <a
-              key={link}
-              href="#"
+              key={link.label}
+              href={link.href}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+              rel={link.href.startsWith("http") ? "noreferrer" : undefined}
               className="rounded-full border-[1.5px] border-ink px-5 py-2.5 text-sm font-bold transition-colors hover:bg-ink hover:text-cream"
             >
-              {link}
+              {link.label}
             </a>
           ))}
         </div>

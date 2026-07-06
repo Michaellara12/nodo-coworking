@@ -8,8 +8,10 @@ import { ArrowUpRight } from "./icons";
 const FIELDS = [
   { id: "nombre", label: "Nombre *", type: "text", required: true },
   { id: "apellido", label: "Apellido *", type: "text", required: true },
-  { id: "email", label: "Email *", type: "email", required: true },
+  { id: "email", label: "Email corporativo *", type: "email", required: true },
   { id: "telefono", label: "Teléfono *", type: "tel", required: true },
+  { id: "empresa", label: "Empresa *", type: "text", required: true },
+  { id: "cargo", label: "Cargo", type: "text", required: false },
 ];
 
 export default function ContactForm() {
@@ -28,7 +30,8 @@ export default function ContactForm() {
         </span>
         <h2 className="text-3xl font-black tracking-tight sm:text-4xl">¡Mensaje enviado!</h2>
         <p className="max-w-sm text-[15.5px] font-medium leading-relaxed">
-          Gracias por escribirnos. El equipo de NODO te contacta muy pronto.
+          Gracias por escribirnos. El equipo de Innfiltrados te contacta muy
+          pronto para diseñar tu misión.
         </p>
       </motion.div>
     );
@@ -72,13 +75,13 @@ export default function ContactForm() {
         className="mt-8"
       >
         <label htmlFor="mensaje" className="block text-[15px] font-semibold">
-          Mensaje *
+          ¿Qué reto quiere resolver tu equipo? *
         </label>
         <textarea
           id="mensaje"
           required
           rows={5}
-          placeholder="Deja tu mensaje aquí"
+          placeholder="Cuéntanos tu reto aquí: innovación, eficiencia, IA, sostenibilidad…"
           className="mt-3 w-full resize-none rounded-2xl border-[1.5px] border-ink/60 bg-transparent p-4 text-[15px] font-medium transition-colors placeholder:text-ink/45 focus:border-ink focus:outline-none"
         />
       </motion.div>
@@ -93,11 +96,11 @@ export default function ContactForm() {
         <div className="space-y-3.5">
           <label className="flex items-start gap-3 text-[13.5px] font-medium leading-snug">
             <input type="checkbox" required className="mt-0.5 size-4 shrink-0 accent-ink" />
-            He leído y acepto los Términos de uso y la Política de privacidad de NODO.
+            He leído y acepto la Política de tratamiento de datos de Innfiltrados.
           </label>
           <label className="flex items-start gap-3 text-[13.5px] font-medium leading-snug">
             <input type="checkbox" className="mt-0.5 size-4 shrink-0 accent-ink" />
-            Quiero recibir novedades, promociones y actividades de NODO.
+            Quiero enterarme de las próximas misiones y eventos de Innfiltrados.
           </label>
         </div>
 

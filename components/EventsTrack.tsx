@@ -12,33 +12,33 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 const EVENTOS = [
   {
-    title: "Salud y bienestar",
-    lead: "Movimiento, pausa y momentos para resetear.",
-    body: "Entrenamientos en grupo, yoga en la terraza y actividades que cuidan el cuerpo y la mente.",
+    title: "Recorridos backstage",
+    lead: "Plantas, bodegas y centros de innovación.",
+    body: "Caminamos las operaciones por dentro, con los responsables explicando cada decisión en el lugar donde se tomó.",
     bg: "bg-blue",
   },
   {
-    title: "Días y noches sociales",
-    lead: "Encuentros fáciles y noches temáticas.",
-    body: "De after-office casuales a fiestas y momentos compartidos. Siempre incluyente, siempre a tu ritmo.",
+    title: "Sesiones con líderes",
+    lead: "Los protagonistas, sin libreto.",
+    body: "C-levels y fundadores comparten cifras, errores y aprendizajes en conversaciones francas, cara a cara.",
     bg: "bg-yellow",
   },
   {
-    title: "Cultura y creatividad",
-    lead: "Ideas, inspiración y experiencias nuevas.",
-    body: "Talleres creativos, charlas, exploraciones urbanas y momentos culturales que juntan a la gente.",
+    title: "Workshops de síntesis",
+    lead: "Del asombro al plan.",
+    body: "Cada día cierra aterrizando lo visto: qué aplica a tu negocio, qué no y por dónde empezar el lunes.",
     bg: "bg-lilac",
   },
   {
-    title: "Carrera y desarrollo",
-    lead: "Crecer más allá del escritorio.",
-    body: "Charlas, talleres y sesiones sobre habilidades, ideas y oportunidades: práctico y aterrizado en la vida real.",
+    title: "Noches de networking",
+    lead: "La red se construye de noche.",
+    body: "Cenas, planes culturales y conversaciones largas donde nacen las alianzas entre innfiltrados.",
     bg: "bg-green",
   },
   {
-    title: "Devolver a la ciudad",
-    lead: "Conectados con lo que nos rodea.",
-    body: "Iniciativas que le devuelven algo al barrio, al ambiente y a la comunidad más amplia.",
+    title: "Seguimiento post-misión",
+    lead: "El viaje sigue en casa.",
+    body: "Sesiones de seguimiento con tu equipo para que el playbook no se quede guardado en un cajón.",
     bg: "bg-orange",
   },
 ];
@@ -83,21 +83,21 @@ export default function EventsTrack() {
             className="flex shrink-0 flex-col justify-between rounded-[26px] border-[1.5px] border-ink/70 bg-cream p-6 sm:p-8 lg:w-[480px]"
           >
             <span className="w-fit rounded-full border-[1.5px] border-ink px-5 py-2 text-[15px] font-bold">
-              Eventos
+              La experiencia
             </span>
             <div>
               <h2 className="text-3xl font-black leading-[1.05] tracking-[-0.02em] sm:text-4xl">
-                Eventos en NODO
+                Momentos de una misión
               </h2>
               <p className="mt-4 text-[16px] font-medium leading-relaxed">
-                Una mezcla de experiencias que le da forma a tu día: del
-                bienestar y la creatividad a las noches sociales y los momentos
-                culturales.
+                Una mezcla de experiencias que le da forma a cada día: de los
+                recorridos backstage y las sesiones con líderes a las noches
+                donde la red se vuelve amistad.
               </p>
               <p className="mt-4 text-lg font-extrabold leading-snug">
-                Tú eliges qué va contigo.
+                Tú pones la curiosidad.
                 <br />
-                Nosotros lo hacemos pasar.
+                Nosotros abrimos las puertas.
               </p>
             </div>
           </motion.div>
@@ -134,7 +134,7 @@ export default function EventsTrack() {
           >
             <Image
               src="/images/insta-1.jpg"
-              alt="Una noche social en NODO"
+              alt="Una noche de networking entre innfiltrados"
               fill
               sizes="(min-width: 1024px) 460px, 100vw"
               className="object-cover"

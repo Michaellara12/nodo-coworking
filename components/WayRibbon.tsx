@@ -10,7 +10,7 @@ export default function WayRibbon() {
           aria-hidden
         />
         <div className="relative flex items-center justify-center gap-2.5 rounded-full bg-yellow px-6 py-5 text-lg font-bold text-white transition-transform duration-300 group-hover:-translate-y-0.5 sm:text-xl">
-          Nuestra forma de trabajar
+          Así funciona una misión
           <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
         </div>
       </a>

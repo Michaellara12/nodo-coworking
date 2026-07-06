@@ -6,7 +6,7 @@ import { ArrowDown } from "./icons";
 
 function BouncingArrows({ className = "" }: { className?: string }) {
   return (
-    <div className={`flex gap-1.5 ${className}`} aria-hidden>
+    <div className={`hidden gap-1.5 sm:flex ${className}`} aria-hidden>
       {[0, 1].map((i) => (
         <motion.span
           key={i}

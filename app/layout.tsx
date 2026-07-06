@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
-import SmoothScroll from "@/components/SmoothScroll";
-import Newsletter from "@/components/Newsletter";
-import Footer from "@/components/Footer";
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -14,11 +10,14 @@ const archivo = Archivo({
 
 export const metadata: Metadata = {
   title: {
-    default: "NODO — Espacios de coworking únicos",
-    template: "%s — NODO Coworking",
+    default: "INNFILTRADOS — Tours de inmersión empresarial",
+    template: "%s — Innfiltrados",
   },
   description:
-    "Coworking todo incluido: puestos flexibles, oficinas privadas y una comunidad que hace que trabajar se sienta increíble.",
+    "El backstage de las empresas líderes, abierto para ti. Misiones de inmersión empresarial en Colombia y el mundo: aprende del conocimiento de otros y vuelve con un plan.",
+  icons: {
+    icon: "/images/innfiltrados/espia-v2.png",
+  },
 };
 
 export default function RootLayout({
@@ -28,15 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${archivo.variable} h-full`}>
-      <body className="min-h-full">
-        <SmoothScroll />
-        <Sidebar />
-        <main className="space-y-5 p-4 pt-24 sm:p-5 sm:pt-24 lg:pt-5 lg:pl-[224px]">
-          {children}
-          <Newsletter />
-          <Footer />
-        </main>
-      </body>
+      <body className="min-h-full">{children}</body>
     </html>
   );
 }

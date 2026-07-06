@@ -42,7 +42,7 @@ export default function MapIllustration() {
         preserveAspectRatio="xMidYMid slice"
         className="h-full w-full"
         role="img"
-        aria-label="Mapa ilustrado con las sedes de NODO"
+        aria-label="Mapa ilustrado con los destinos de las misiones Innfiltrados"
       >
         {/* manzanas */}
         <g transform="rotate(-4 400 330)">
@@ -99,7 +99,7 @@ export default function MapIllustration() {
           style={{ transformBox: "fill-box", transformOrigin: "center" }}
         >
           <g className="animate-bob">
-            <rect x={330} y={230} width={172} height={46} rx={23} fill="#ff5a36" />
+            <rect x={310} y={230} width={212} height={46} rx={23} fill="#ff5a36" />
             <text
               x={416}
               y={260}
@@ -108,7 +108,7 @@ export default function MapIllustration() {
               fontWeight={700}
               fill="#141414"
             >
-              NODO Centro
+              Próxima misión
             </text>
             <path
               d="M416 322c-14-14-24-25-24-36a24 24 0 1 1 48 0c0 11-10 22-24 36Z"

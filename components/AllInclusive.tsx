@@ -113,29 +113,32 @@ export default function AllInclusive() {
             <PlantIllustration className="mx-auto my-8 h-52 sm:h-60" />
             <div>
               <h2 className="text-4xl font-black leading-[1.02] tracking-[-0.02em] sm:text-[44px]">
-                Un puesto. Un universo entero.
+                Una misión. Un universo de aprendizajes.
               </h2>
-              <p className="mt-4 text-lg font-extrabold">Tu membresía lo cubre todo</p>
+              <p className="mt-4 text-lg font-extrabold">Tu cupo lo cubre todo</p>
               <p className="mt-3 text-[15.5px] font-medium leading-relaxed">
-                Cada puesto en NODO combina espacios y servicios para que
-                trabajar sea fácil. Todo va incluido en tu plan: sin costos
-                ocultos, sin sorpresas. Espacios equipados y con diseño, para
-                que tu día fluya a tu manera.
+                Cada misión combina recorridos, sesiones y logística para que
+                tú solo te ocupes de aprender. Todo va incluido: sin costos
+                ocultos, sin sorpresas. Tú te innfiltras; nosotros nos
+                encargamos del resto.
               </p>
             </div>
           </motion.div>
 
           <Column index={0}>
-            <PhotoCard src="/images/lobby.jpg" alt="Lobby y zonas sociales de NODO" />
+            <PhotoCard
+              src="/images/innfiltrados/mision-1.jpg"
+              alt="Recorrido backstage por la planta de una empresa anfitriona"
+            />
             <ListCard
               className="bg-lilac"
-              title="Espacios de comunidad"
-              subtitle="Acceso libre, 24/7"
+              title="Antes de la misión"
+              subtitle="Preparamos el terreno"
               items={[
-                "Gimnasio equipado",
-                "Cocina + barra de café",
-                "Zonas de descanso",
-                "Cabinas para llamadas",
+                "Diagnóstico de los retos de tu equipo",
+                "Agenda curada por objetivo",
+                "Briefing de cada empresa anfitriona",
+                "Kit del innfiltrado",
               ]}
             />
           </Column>
@@ -143,30 +146,33 @@ export default function AllInclusive() {
           <Column index={1}>
             <ListCard
               className="bg-orange"
-              title="Seguridad"
-              subtitle="De día y de noche"
+              title="Durante la misión"
+              subtitle="Acceso sin filtros"
               items={[
-                "CCTV 24/7",
-                "Ronda nocturna 7/7",
-                "Puerta con cerradura electrónica",
-                "Control de acceso inteligente",
+                "Recorridos backstage guiados",
+                "Q&A con los protagonistas",
+                "Sesiones de síntesis diarias",
+                "Traducción simultánea",
               ]}
             />
-            <PhotoCard src="/images/office.jpg" alt="Oficina privada en NODO" />
+            <PhotoCard
+              src="/images/innfiltrados/mision-2.jpg"
+              alt="Sesión cara a cara con líderes de una empresa anfitriona"
+            />
           </Column>
 
           <Column index={2}>
-            <PhotoCard src="/images/desk.jpg" alt="Puesto de trabajo con café" />
+            <PhotoCard src="/images/meeting.jpg" alt="Workshop de síntesis del equipo innfiltrado" />
             <ListCard
               className="bg-yellow"
-              title="Soporte"
-              subtitle="Te cubrimos las espaldas"
+              title="Después de la misión"
+              subtitle="Del viaje al plan"
               items={[
-                "Equipo residente 24/7",
-                "Onboarding desde el día uno",
-                "Solicitudes resueltas rápido",
-                "Mantenimiento express",
-                "Mejora continua",
+                "Playbook de hallazgos",
+                "Plan de implementación a 90 días",
+                "Sesión de seguimiento con tu equipo",
+                "Acceso a la comunidad alumni",
+                "Repositorio de aprendizajes",
               ]}
             />
           </Column>
@@ -174,17 +180,17 @@ export default function AllInclusive() {
           <Column index={3}>
             <ListCard
               className="bg-green"
-              title="Smart Working"
-              subtitle="Diseñado para tu día a día"
+              title="Logística completa"
+              subtitle="Cero fricción, puro aprendizaje"
               items={[
-                "Llave digital en tu móvil",
-                "Reserva de salas en la app",
-                "Tickets de mantenimiento",
-                "Impresión inteligente",
-                "Intercom digital",
+                "Vuelos y hoteles gestionados",
+                "Transporte en destino",
+                "Seguro de viaje internacional",
+                "Alimentación curada",
+                "Acompañamiento permanente",
               ]}
             />
-            <PhotoCard src="/images/phone.jpg" alt="App de NODO en el móvil" />
+            <PhotoCard src="/images/phone.jpg" alt="Toda la agenda de la misión en tu móvil" />
           </Column>
         </motion.div>
       </div>

@@ -8,8 +8,8 @@ export default function Community() {
       <Reveal className="h-full">
         <div className="group relative h-64 overflow-hidden rounded-[28px] sm:h-80 lg:h-full lg:min-h-[500px]">
           <Image
-            src="/images/exterior.jpg"
-            alt="Fachada de la sede NODO Centro"
+            src="/images/insta-3.jpg"
+            alt="Innfiltrados trabajando en equipo durante una sesión de síntesis"
             fill
             sizes="(min-width: 1024px) 33vw, 100vw"
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -20,26 +20,19 @@ export default function Community() {
       <Reveal delay={0.1} className="h-full">
         <div className="flex h-full flex-col justify-center gap-6 rounded-[28px] bg-red p-8 sm:p-10 lg:min-h-[500px]">
           <h2 className="text-4xl font-black leading-[1.02] tracking-[-0.02em] sm:text-[42px]">
-            Una forma compartida de trabajar
+            Una comunidad de innfiltrados
           </h2>
           <p className="text-[16px] font-medium leading-relaxed">
-            En NODO la comunidad pasa sola. A través de espacios comunes,
-            momentos compartidos y experiencias que juntan a la gente — con la
-            libertad de sumarte cuando quieras y como quieras.
+            Cada misión termina, pero la red se queda. Cientos de ejecutivos de
+            las compañías líderes de la región comparten hallazgos, contactos y
+            oportunidades mucho después de deshacer la maleta.
           </p>
           <a
             href="/comunidad"
-            className="group relative inline-flex w-fit items-center gap-2.5 overflow-hidden px-8 py-4 text-lg font-bold text-white"
-            style={{ borderRadius: "48% 52% 55% 45% / 58% 46% 54% 42%" }}
+            className="group inline-flex w-fit items-center gap-2.5 rounded-full bg-ink px-7 py-4 text-base font-bold text-yellow transition-colors duration-300 hover:bg-cream hover:text-ink"
           >
-            <span className="absolute inset-0 bg-yellow" aria-hidden />
-            <span
-              className="absolute -inset-x-2 top-1/2 h-[130%] -translate-y-1/2 rotate-[-4deg] bg-orange transition-transform duration-500 group-hover:rotate-[3deg] group-hover:scale-110"
-              style={{ borderRadius: "50% 50% 45% 55% / 60% 45% 55% 40%" }}
-              aria-hidden
-            />
-            <span className="relative">Únete a la comunidad</span>
-            <ArrowUpRight className="relative size-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            Conoce la comunidad
+            <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </a>
         </div>
       </Reveal>
@@ -48,7 +41,7 @@ export default function Community() {
         <div className="group relative h-64 overflow-hidden rounded-[28px] sm:h-80 lg:h-full lg:min-h-[500px]">
           <Image
             src="/images/terrace.jpg"
-            alt="Miembros de NODO compartiendo en la terraza"
+            alt="Innfiltrados compartiendo después de un recorrido"
             fill
             sizes="(min-width: 1024px) 33vw, 100vw"
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"

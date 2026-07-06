@@ -67,7 +67,7 @@ function cellPoints(sOut: number, sIn: number, edge: Edge, seg: number) {
 }
 
 export default function Tunnel() {
-  const sizes = useMemo(ringSizes, []);
+  const sizes = useMemo(() => ringSizes(), []);
   const [colors, setColors] = useState<number[]>(() => CELLS.map((_, i) => i % PALETTE.length));
 
   const shuffle = useCallback(() => {
@@ -154,7 +154,7 @@ export default function Tunnel() {
         transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute left-6 top-1/2 -translate-y-1/2 rounded-full bg-ink px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-purple hover:text-ink sm:left-10"
       >
-        Press to Start
+        Innfíltrate
       </motion.button>
     </div>
   );

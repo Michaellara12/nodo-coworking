@@ -1,23 +1,25 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { EASE } from "./Reveal";
+import { SITE, WA_GENERAL } from "@/lib/site";
 import {
   ArrowUpRight,
   CloseIcon,
-  FacebookIcon,
   Globe,
   InstagramIcon,
+  LinkedinIcon,
   MenuIcon,
-  TiktokIcon,
+  WhatsappIcon,
 } from "./icons";
 
 const NAV = [
-  { n: "01", label: "Espacios", href: "/", bg: "bg-blue" },
-  { n: "02", label: "Cómo trabajamos", href: "/forma-de-trabajar", bg: "bg-yellow" },
+  { n: "01", label: "Misiones", href: "/", bg: "bg-blue" },
+  { n: "02", label: "Cómo funciona", href: "/forma-de-trabajar", bg: "bg-yellow" },
   { n: "03", label: "Comunidad", href: "/comunidad", bg: "bg-orange" },
   { n: "04", label: "Contacto", href: "/contacto", bg: "bg-green" },
 ];
@@ -25,19 +27,29 @@ const NAV = [
 function Wordmark({ compact = false }: { compact?: boolean }) {
   return (
     <Link href="/" className="block select-none">
-      <span
-        className={`block font-black leading-none tracking-[-0.045em] ${
-          compact ? "text-[26px]" : "text-[38px]"
-        }`}
-      >
-        nodo.
+      <span className="flex items-center gap-1.5">
+        <Image
+          src="/images/innfiltrados/espia-v2.png"
+          alt=""
+          width={54}
+          height={47}
+          priority
+          className={compact ? "w-6" : "w-8"}
+        />
+        <span
+          className={`block font-black leading-none tracking-[-0.045em] ${
+            compact ? "text-[17px]" : "text-[21px]"
+          }`}
+        >
+          innfiltrados®
+        </span>
       </span>
       <span
-        className={`mt-1 block font-bold uppercase tracking-[0.24em] text-ink/80 ${
-          compact ? "text-[6.5px]" : "text-[8px]"
+        className={`mt-1 block font-bold uppercase leading-snug tracking-[0.18em] text-ink/80 ${
+          compact ? "text-[6px]" : "text-[7.5px]"
         }`}
       >
-        Espacios de trabajo únicos
+        Tours de inmersión empresarial
       </span>
     </Link>
   );
@@ -88,14 +100,32 @@ function NavCard({
 function SocialBar({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center justify-around rounded-full bg-ink px-2 py-3 text-cream ${className}`}>
-      <a href="#" aria-label="Instagram" className="transition-colors hover:text-yellow">
+      <a
+        href={SITE.instagram}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Instagram"
+        className="transition-colors hover:text-yellow"
+      >
         <InstagramIcon className="size-[18px]" />
       </a>
-      <a href="#" aria-label="Facebook" className="transition-colors hover:text-yellow">
-        <FacebookIcon className="size-[18px]" />
+      <a
+        href={SITE.linkedin}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="LinkedIn"
+        className="transition-colors hover:text-yellow"
+      >
+        <LinkedinIcon className="size-[18px]" />
       </a>
-      <a href="#" aria-label="TikTok" className="transition-colors hover:text-yellow">
-        <TiktokIcon className="size-[18px]" />
+      <a
+        href={WA_GENERAL}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="WhatsApp"
+        className="transition-colors hover:text-yellow"
+      >
+        <WhatsappIcon className="size-[18px]" />
       </a>
     </div>
   );
@@ -133,18 +163,12 @@ export default function Sidebar() {
           className="mt-3 space-y-2.5"
         >
           <Link
-            href="/contacto"
-            className="block rounded-xl bg-purple px-3 py-3.5 text-center text-[14px] font-bold transition hover:brightness-110 active:scale-[0.98]"
-          >
-            Reserva tu puesto
-          </Link>
-          <button
-            type="button"
+            href="/plataforma"
             className="flex w-full items-center justify-between rounded-full bg-ink px-4 py-3 text-[13px] font-semibold text-cream transition hover:text-yellow"
           >
-            <span>English</span>
+            <span>Plataforma</span>
             <Globe className="size-4" />
-          </button>
+          </Link>
           <SocialBar />
         </motion.div>
       </aside>
@@ -198,21 +222,15 @@ export default function Sidebar() {
             </nav>
 
             <div className="mt-4 space-y-3">
-              <Link
-                href="/contacto"
-                onClick={() => setOpen(false)}
-                className="block rounded-2xl bg-purple px-4 py-4 text-center text-base font-bold"
-              >
-                Reserva tu puesto
-              </Link>
               <div className="flex gap-3">
-                <button
-                  type="button"
+                <Link
+                  href="/plataforma"
+                  onClick={() => setOpen(false)}
                   className="flex flex-1 items-center justify-between rounded-full bg-ink px-5 py-3.5 text-sm font-semibold text-cream"
                 >
-                  <span>English</span>
+                  <span>Plataforma</span>
                   <Globe className="size-4" />
-                </button>
+                </Link>
                 <SocialBar className="flex-1 gap-4 px-5" />
               </div>
             </div>

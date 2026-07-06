@@ -47,20 +47,20 @@ const VALUES = [
   {
     matrix: BUBBLE,
     color: "#1be349",
-    title: "Primero las personas",
-    body: "Todo empieza por cómo se siente trabajar aquí. De los puestos privados a las experiencias compartidas, la gente siempre va primero.",
+    title: "Curiosidad radical",
+    body: "Preguntamos lo que nadie se atreve. Las mejores respuestas del mundo empresarial están detrás de la puerta que dice “solo personal autorizado”.",
   },
   {
     matrix: BOLT,
     color: "#e6313a",
-    title: "Diseño con intención",
-    body: "Nada es casualidad. Cada detalle está pensado para apoyar tu forma de trabajar y de sentirte, todos los días.",
+    title: "Aprender haciendo",
+    body: "Nada de teoría en salones. El conocimiento que sirve se ve, se toca y se conversa con quien lo construyó, dentro de la operación real.",
   },
   {
     matrix: HEART,
     color: "#ffb200",
-    title: "Cuidado de verdad",
-    body: "Está en el centro de todo lo que hacemos. Cuidamos a quienes trabajan aquí, los espacios que creamos y la ciudad de la que somos parte.",
+    title: "Generosidad de red",
+    body: "Compartimos contactos, hallazgos y errores. Lo que una empresa aprende en una misión, la comunidad entera lo capitaliza.",
   },
 ];
 

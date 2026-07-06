@@ -2,7 +2,8 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
+import { motion, MotionValue, useTransform } from "framer-motion";
+import { usePinnedProgress } from "./usePinnedProgress";
 
 /*
  * Sección pineada: foto a pantalla completa con tarjetas glass que se van
@@ -12,28 +13,28 @@ import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 
 const ITEMS = [
   {
-    title: "Tu puesto",
-    body: "Tu espacio propio, diseñado para el foco, la comodidad y el día a día.",
+    title: "Diagnóstico previo",
+    body: "Antes de volar entendemos qué necesita aprender tu equipo — y para qué.",
   },
   {
-    title: "Espacios de comunidad",
-    body: "Lugares que inspiran sin estorbar: para concentrarte, moverte, descansar y conectar.",
+    title: "Acceso backstage",
+    body: "Puertas que no se abren con una tarjeta de presentación: se abren con nuestra red.",
   },
   {
-    title: "Soporte diario",
-    body: "Todo lo que necesitas, justo cuando lo necesitas. Nos ocupamos de los detalles.",
+    title: "Líderes cara a cara",
+    body: "Los protagonistas cuentan cómo lo hicieron: con cifras, errores y decisiones.",
   },
   {
-    title: "Seguridad",
-    body: "Un entorno cuidado y seguro que te deja trabajar tranquilo, de día y de noche.",
+    title: "Síntesis diaria",
+    body: "Cada día cierra convirtiendo lo visto en ideas accionables para tu negocio.",
   },
   {
-    title: "Comunidad y eventos",
-    body: "Oportunidades para conocer, compartir y pertenecer — de forma natural.",
+    title: "Playbook final",
+    body: "Vuelves con un plan de implementación, no con una libreta de notas sueltas.",
   },
   {
-    title: "Experiencia digital",
-    body: "Herramientas smart que hacen tu día simple: llave móvil, reservas y soporte en la app.",
+    title: "Red innfiltrada",
+    body: "La comunidad y los contactos siguen trabajando para ti después del viaje.",
   },
 ];
 
@@ -64,7 +65,7 @@ function GlassCard({
 
 export default function MeaningPinned() {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress: p } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  const p = usePinnedProgress(ref);
   const scale = useTransform(p, [0, 0.12], [1.08, 1]);
 
   return (
@@ -74,8 +75,8 @@ export default function MeaningPinned() {
           {/* aquí puede ir un <video autoPlay muted loop playsInline> en lugar de la foto */}
           <motion.div style={{ scale }} className="absolute inset-0">
             <Image
-              src="/images/lobby.jpg"
-              alt="Un día cualquiera dentro de NODO"
+              src="/images/innfiltrados/mision-1.jpg"
+              alt="Un día cualquiera dentro de una misión Innfiltrados"
               fill
               sizes="100vw"
               className="object-cover"

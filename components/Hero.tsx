@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { EASE } from "./Reveal";
 import { ArrowUpRight } from "./icons";
 
-const LINES = ["Donde trabajar", "se siente increíble."];
+const LINES = ["Aprende del", "conocimiento de otros."];
 
 export default function Hero() {
   return (
@@ -17,14 +17,14 @@ export default function Hero() {
         className="relative h-[calc(100svh-7.25rem)] min-h-[540px] overflow-hidden rounded-[28px] lg:h-[calc(100svh-2.5rem)]"
       >
         <Image
-          src="/images/hero.jpg"
-          alt="Zona común principal del coworking NODO"
+          src="/images/innfiltrados/mision-1.jpg"
+          alt="Innfiltrados recorriendo la planta de producción de una empresa anfitriona"
           fill
           priority
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-ink/35" />
+        <div className="absolute inset-0 bg-ink/45" />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center px-5 text-center text-white">
           <h1 className="max-w-5xl text-[44px] font-black leading-[0.98] tracking-[-0.03em] sm:text-6xl lg:text-7xl xl:text-[88px]">
@@ -48,8 +48,8 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 0.8, ease: EASE }}
             className="mt-5 max-w-2xl text-lg font-semibold leading-snug sm:text-2xl"
           >
-            Coworking todo incluido, con todo lo que necesitas para crear,
-            conectar y crecer.
+            El backstage de las empresas líderes, abierto para ti con nuestros
+            tours de inmersión empresarial.
           </motion.p>
 
           <motion.a
@@ -57,9 +57,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.85, duration: 0.8, ease: EASE }}
             href="/contacto"
-            className="group mt-9 inline-flex items-center gap-2.5 rounded-full bg-ink px-7 py-4 text-base font-bold text-white transition-colors duration-300 hover:bg-white hover:text-ink sm:text-lg"
+            className="group mt-9 inline-flex items-center gap-2.5 rounded-full bg-ink px-7 py-4 text-base font-bold text-yellow transition-colors duration-300 hover:bg-yellow hover:text-ink sm:text-lg"
           >
-            Reserva tu puesto
+            Innfíltrate
             <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </motion.a>
         </div>
