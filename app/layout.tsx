@@ -23,9 +23,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  /* sin altura fija en <html>: Lenis observa su tamaño para recalcular el
+     límite de scroll; con h-full el límite quedaba obsoleto al navegar y el
+     scroll se trababa a mitad de página */
   return (
-    <html lang="es" className={`${archivo.variable} h-full`}>
-      <body className="min-h-full">{children}</body>
+    <html lang="es" className={archivo.variable}>
+      <body className="min-h-svh">{children}</body>
     </html>
   );
 }

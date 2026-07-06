@@ -35,9 +35,8 @@
   }
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* sin scroll-behavior: smooth — pelea con Lenis (los scrollTo programáticos,
+   como el reset al navegar, se quedan a medias); Lenis ya suaviza las anclas */
 
 body {
   @apply bg-cream text-ink font-sans antialiased;
