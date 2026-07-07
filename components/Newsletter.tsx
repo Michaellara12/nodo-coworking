@@ -13,7 +13,7 @@ export default function Newsletter() {
         <div className="flex flex-col gap-4 lg:flex-row lg:items-stretch">
           <div className="flex items-center justify-center rounded-[999px] bg-red px-8 py-6 sm:py-7 lg:flex-1">
             <h2 className="whitespace-nowrap text-[26px] font-black tracking-[-0.01em] sm:text-4xl">
-              Únete al radar de misiones
+              Únete a la misión
             </h2>
           </div>
 
