@@ -60,7 +60,7 @@ export function usuarioFixture(extra: Partial<MockUser> = {}): MockUser {
   return {
     id: "22222222-2222-4222-8222-222222222222",
     email: "laura@alpina.com",
-    password: "espia123",
+    password: "espia2026",
     nombre: "Laura",
     apellido: "Gómez",
     empresa: "Alpina",
@@ -136,7 +136,9 @@ export async function mockSupabase(page: Page, state: MockState): Promise<MockSt
 
     if (path.endsWith("/token") && url.searchParams.get("grant_type") === "password") {
       const body = req.postDataJSON() as { email?: string; password?: string };
-      if (body.email === state.user.email && body.password === state.user.password) {
+      const emailDemoEsperado =
+        state.user.role === "admin" ? "admin@innfiltrados.com" : "laura@alpina.com";
+      if (body.email === emailDemoEsperado && body.password === state.user.password) {
         return json(route, sessionJson(state.user));
       }
       return json(
@@ -217,8 +219,10 @@ export async function mockSupabase(page: Page, state: MockState): Promise<MockSt
 
 export async function iniciarSesion(page: Page, user: MockUser) {
   await page.goto("/plataforma/login");
-  await page.getByLabel("Email corporativo *").fill(user.email);
-  await page.getByLabel("Contraseña *").fill(user.password);
-  await page.getByRole("button", { name: "Entrar a la plataforma" }).click();
+  await page
+    .getByRole("button", {
+      name: user.role === "admin" ? /Entrar como administrador/ : /Entrar como infiltrado/,
+    })
+    .click();
   await page.waitForURL("**/plataforma");
 }

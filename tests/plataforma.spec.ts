@@ -14,7 +14,7 @@ test.describe("Plataforma — acceso", () => {
     await expect(page).toHaveURL(/plataforma\/login/);
   });
 
-  test("credenciales inválidas muestran error", async ({ page }) => {
+  test("muestra los dos accesos rápidos sin pedir credenciales", async ({ page }) => {
     await mockSupabase(page, {
       user: usuarioFixture(),
       misiones: [misionFixture()],
@@ -22,16 +22,15 @@ test.describe("Plataforma — acceso", () => {
     });
 
     await page.goto("/plataforma/login");
-    await page.getByLabel("Email corporativo *").fill("laura@alpina.com");
-    await page.getByLabel("Contraseña *").fill("clave-mala");
-    await page.getByRole("button", { name: "Entrar a la plataforma" }).click();
-
-    await expect(page.getByText("Email o contraseña incorrectos.")).toBeVisible();
+    await expect(page.getByRole("button", { name: /Entrar como infiltrado/ })).toBeVisible();
+    await expect(page.getByRole("button", { name: /Entrar como administrador/ })).toBeVisible();
+    await expect(page.getByLabel("Email corporativo *")).toHaveCount(0);
+    await expect(page.getByLabel("Contraseña *")).toHaveCount(0);
   });
 
   test("login correcto lleva al dashboard con saludo y misiones", async ({ page }) => {
     await mockSupabase(page, {
-      user: usuarioFixture(),
+      user: usuarioFixture({ password: "espia2026" }),
       misiones: [misionFixture()],
       inscripciones: [],
     });

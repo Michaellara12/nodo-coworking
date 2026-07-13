@@ -7,93 +7,57 @@ import { motion } from "framer-motion";
 import { EASE } from "@/components/Reveal";
 import { ArrowUpRight } from "@/components/icons";
 import { getSupabase } from "@/lib/supabase";
-import { BotonInk, Campo, inputCls, Pill } from "@/components/plataforma/ui";
+import { Pill } from "@/components/plataforma/ui";
 
-type Modo = "entrar" | "registro";
+const ACCESOS_DEMO = [
+  {
+    id: "infiltrado",
+    titulo: "Entrar como infiltrado",
+    descripcion: "Explora misiones, inscríbete y revisa tus cupos.",
+    email: "laura@alpina.com",
+    password: "espia2026",
+    color: "bg-blue",
+  },
+  {
+    id: "admin",
+    titulo: "Entrar como administrador",
+    descripcion: "Gestiona misiones, calendario e inscripciones.",
+    email: "admin@innfiltrados.com",
+    password: "espia2026",
+    color: "bg-purple",
+  },
+] as const;
+
+type AccesoId = (typeof ACCESOS_DEMO)[number]["id"];
 
 export default function LoginPage() {
-  const [modo, setModo] = useState<Modo>("entrar");
+  const [entrandoComo, setEntrandoComo] = useState<AccesoId | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [aviso, setAviso] = useState<string | null>(null);
-  const [enviando, setEnviando] = useState(false);
 
-  const entrar = async (form: FormData) => {
+  const entrarDemo = async (acceso: (typeof ACCESOS_DEMO)[number]) => {
     setError(null);
-    setAviso(null);
-    setEnviando(true);
+    setEntrandoComo(acceso.id);
+
     const { error: err } = await getSupabase().auth.signInWithPassword({
-      email: String(form.get("email")),
-      password: String(form.get("password")),
+      email: acceso.email,
+      password: acceso.password,
     });
-    setEnviando(false);
+
     if (err) {
-      setError(
-        err.message === "Invalid login credentials"
-          ? "Email o contraseña incorrectos."
-          : err.message
-      );
+      setEntrandoComo(null);
+      setError("No pudimos abrir la demo. Intenta de nuevo en un momento.");
     }
-    /* si entra bien, el AuthProvider redirige solo */
-  };
-
-  const registrar = async (form: FormData) => {
-    setError(null);
-    setAviso(null);
-    setEnviando(true);
-    const { data, error: err } = await getSupabase().auth.signUp({
-      email: String(form.get("email")),
-      password: String(form.get("password")),
-      options: {
-        data: {
-          nombre: String(form.get("nombre") ?? ""),
-          apellido: String(form.get("apellido") ?? ""),
-          empresa: String(form.get("empresa") ?? ""),
-          cargo: String(form.get("cargo") ?? ""),
-          codigo_equipo: String(form.get("codigo_equipo") ?? ""),
-        },
-      },
-    });
-    if (err) {
-      setEnviando(false);
-      setError(err.message);
-      return;
-    }
-
-    if (!data.session) {
-      /* la cuenta ya queda confirmada por el trigger de la base de datos:
-       * entramos directo, sin pedir verificación de correo */
-      const { error: errEntrar } = await getSupabase().auth.signInWithPassword({
-        email: String(form.get("email")),
-        password: String(form.get("password")),
-      });
-      setEnviando(false);
-      if (errEntrar) {
-        setAviso("Cuenta creada. Inicia sesión con tu email y contraseña.");
-        setModo("entrar");
-      }
-      /* si entra bien, el AuthProvider redirige solo */
-      return;
-    }
-    setEnviando(false);
-  };
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    if (modo === "entrar") void entrar(form);
-    else void registrar(form);
+    /* Si entra bien, AuthProvider redirige automáticamente a la plataforma. */
   };
 
   return (
     <main className="grid min-h-svh gap-5 p-4 sm:p-5 lg:grid-cols-[1fr_1.15fr]">
-      {/* ——— Panel de marca ——— */}
       <motion.section
         initial={{ opacity: 0, scale: 0.985 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: EASE }}
         className="relative hidden flex-col justify-between overflow-hidden rounded-[28px] bg-yellow p-8 sm:p-10 lg:flex"
       >
-        {/* cuadrícula */}
         <svg className="absolute inset-0 h-full w-full text-ink" aria-hidden>
           <defs>
             <pattern id="logingrid" width="56" height="56" patternUnits="userSpaceOnUse">
@@ -104,7 +68,7 @@ export default function LoginPage() {
         </svg>
 
         <div className="relative">
-          <Pill>Plataforma interna</Pill>
+          <Pill>Demo interactiva</Pill>
         </div>
 
         <div className="relative">
@@ -127,8 +91,7 @@ export default function LoginPage() {
             empieza aquí.
           </h1>
           <p className="mx-auto mt-4 max-w-sm text-center text-[15.5px] font-medium leading-relaxed">
-            Inscríbete a las misiones, gestiona tu cupo y conéctate con la
-            comunidad de innfiltrados.
+            Recorre la experiencia desde ambos lados de la plataforma.
           </p>
         </div>
 
@@ -144,7 +107,6 @@ export default function LoginPage() {
         </div>
       </motion.section>
 
-      {/* ——— Formulario ——— */}
       <motion.section
         initial={{ opacity: 0, y: 22 }}
         animate={{ opacity: 1, y: 0 }}
@@ -156,112 +118,49 @@ export default function LoginPage() {
           <span className="text-[21px] font-black tracking-[-0.045em]">innfiltrados®</span>
         </div>
 
-        <h2 className="mt-4 text-4xl font-black leading-[1.0] tracking-[-0.02em] sm:text-5xl">
-          {modo === "entrar" ? "¡Hola de nuevo!" : "Crea tu cuenta"}
+        <Pill className="mt-6 w-fit lg:hidden">Demo interactiva</Pill>
+        <h2 className="mt-5 text-4xl font-black leading-[1.0] tracking-[-0.02em] sm:text-5xl">
+          Elige cómo entrar
         </h2>
-        <p className="mt-3 text-[15.5px] font-medium text-ink/80">
-          {modo === "entrar"
-            ? "Entra a tu cuenta para ver las misiones."
-            : "Únete a la plataforma y asegura tu cupo en la próxima misión."}
+        <p className="mt-3 max-w-lg text-[15.5px] font-medium leading-relaxed text-ink/80">
+          No necesitas crear una cuenta ni escribir una contraseña. Elige un perfil y explora la demo.
         </p>
 
-        {/* tabs */}
-        <div className="mt-7 flex w-fit rounded-full border-[1.5px] border-ink p-1">
-          {(["entrar", "registro"] as const).map((m) => (
-            <button
-              key={m}
-              type="button"
-              onClick={() => {
-                setModo(m);
-                setError(null);
-              }}
-              className={`rounded-full px-5 py-2 text-[13.5px] font-bold transition-colors ${
-                modo === m ? "bg-ink text-cream" : "hover:bg-ink/10"
-              }`}
-            >
-              {m === "entrar" ? "Iniciar sesión" : "Registrarme"}
-            </button>
-          ))}
+        <div className="mt-8 grid gap-4">
+          {ACCESOS_DEMO.map((acceso) => {
+            const cargando = entrandoComo === acceso.id;
+            return (
+              <button
+                key={acceso.id}
+                type="button"
+                onClick={() => void entrarDemo(acceso)}
+                disabled={entrandoComo !== null}
+                className={`${acceso.color} group flex w-full items-center justify-between gap-5 rounded-[22px] border-[1.5px] border-ink p-5 text-left transition duration-300 hover:-translate-y-1 hover:shadow-[5px_5px_0_#141414] disabled:cursor-wait disabled:opacity-60 sm:p-6`}
+              >
+                <span>
+                  <span className="block text-xl font-black sm:text-2xl">
+                    {cargando ? "Abriendo la demo…" : acceso.titulo}
+                  </span>
+                  <span className="mt-1.5 block text-[13.5px] font-semibold leading-relaxed text-ink/75 sm:text-sm">
+                    {acceso.descripcion}
+                  </span>
+                </span>
+                <span className="grid size-11 shrink-0 place-items-center rounded-full bg-ink text-cream transition-transform group-hover:rotate-45">
+                  <ArrowUpRight className="size-5" />
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        <form onSubmit={onSubmit} className="mt-7 space-y-5">
-          {modo === "registro" && (
-            <>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Campo id="nombre" label="Nombre *">
-                  <input id="nombre" name="nombre" required className={inputCls} placeholder="Laura" />
-                </Campo>
-                <Campo id="apellido" label="Apellido *">
-                  <input id="apellido" name="apellido" required className={inputCls} placeholder="Gómez" />
-                </Campo>
-              </div>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Campo id="empresa" label="Empresa *">
-                  <input id="empresa" name="empresa" required className={inputCls} placeholder="Alpina" />
-                </Campo>
-                <Campo id="cargo" label="Cargo">
-                  <input id="cargo" name="cargo" className={inputCls} placeholder="Gerente de innovación" />
-                </Campo>
-              </div>
-            </>
-          )}
+        {error && (
+          <p role="alert" className="mt-5 rounded-2xl bg-red px-4 py-3 text-[14px] font-bold text-white">
+            {error}
+          </p>
+        )}
 
-          <Campo id="email" label="Email corporativo *">
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              className={inputCls}
-              placeholder="tu@empresa.com"
-            />
-          </Campo>
-          <Campo id="password" label="Contraseña *">
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              minLength={6}
-              className={inputCls}
-              placeholder="Mínimo 6 caracteres"
-            />
-          </Campo>
-
-          {modo === "registro" && (
-            <Campo id="codigo_equipo" label="Código de equipo (opcional)">
-              <input
-                id="codigo_equipo"
-                name="codigo_equipo"
-                className={inputCls}
-                placeholder="Solo para el equipo de Innfiltrados"
-              />
-            </Campo>
-          )}
-
-          {error && (
-            <p role="alert" className="rounded-2xl bg-red px-4 py-3 text-[14px] font-bold text-white">
-              {error}
-            </p>
-          )}
-          {aviso && (
-            <p role="status" className="rounded-2xl bg-mint px-4 py-3 text-[14px] font-bold">
-              {aviso}
-            </p>
-          )}
-
-          <BotonInk type="submit" disabled={enviando} className="w-full py-4 text-base">
-            {enviando
-              ? "Un momento…"
-              : modo === "entrar"
-                ? "Entrar a la plataforma"
-                : "Crear mi cuenta"}
-            <ArrowUpRight className="size-5" />
-          </BotonInk>
-        </form>
-
-        <p className="mt-6 text-center text-[13px] font-semibold text-ink/60">
-          ¿Problemas para entrar? Escríbenos por WhatsApp al +57 300 539 3295.
+        <p className="mt-7 text-center text-[13px] font-semibold text-ink/55">
+          Esta plataforma es una muestra. Ninguna acción ni pago es real.
         </p>
       </motion.section>
     </main>
