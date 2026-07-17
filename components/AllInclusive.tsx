@@ -1,10 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { EASE } from "./Reveal";
 import PlantIllustration from "./PlantIllustration";
+import StreamMedia from "./StreamMedia";
+import {
+  MEDIA_LIDERES,
+  MEDIA_PHONE,
+  MEDIA_PLANTA,
+  MEDIA_WORKSHOP,
+} from "@/lib/media";
 
 type ListCardProps = {
   title: string;
@@ -33,22 +39,23 @@ function ListCard({ title, subtitle, items, className = "" }: ListCardProps) {
 }
 
 function PhotoCard({
-  src,
+  imageUrl,
+  streamSrc,
   alt,
   className = "",
 }: {
-  src: string;
+  imageUrl: string;
+  streamSrc?: string;
   alt: string;
   className?: string;
 }) {
   return (
     <div className={`group relative min-h-[240px] flex-1 overflow-hidden rounded-[26px] ${className}`}>
-      <Image
-        src={src}
+      <StreamMedia
+        imageUrl={imageUrl}
+        streamSrc={streamSrc}
         alt={alt}
-        fill
         sizes="(min-width: 1024px) 440px, 100vw"
-        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
       />
     </div>
   );
@@ -127,8 +134,9 @@ export default function AllInclusive() {
 
           <Column index={0}>
             <PhotoCard
-              src="/images/innfiltrados/mision-1.jpg"
-              alt="Recorrido backstage por la planta de una empresa anfitriona"
+              imageUrl={MEDIA_PLANTA.imageUrl}
+              streamSrc={MEDIA_PLANTA.streamSrc}
+              alt={MEDIA_PLANTA.alt}
             />
             <ListCard
               className="bg-lilac"
@@ -156,13 +164,18 @@ export default function AllInclusive() {
               ]}
             />
             <PhotoCard
-              src="/images/innfiltrados/mision-2.jpg"
-              alt="Sesión cara a cara con líderes de una empresa anfitriona"
+              imageUrl={MEDIA_LIDERES.imageUrl}
+              streamSrc={MEDIA_LIDERES.streamSrc}
+              alt={MEDIA_LIDERES.alt}
             />
           </Column>
 
           <Column index={2}>
-            <PhotoCard src="/images/meeting.jpg" alt="Workshop de síntesis del equipo innfiltrado" />
+            <PhotoCard
+              imageUrl={MEDIA_WORKSHOP.imageUrl}
+              streamSrc={MEDIA_WORKSHOP.streamSrc}
+              alt={MEDIA_WORKSHOP.alt}
+            />
             <ListCard
               className="bg-yellow"
               title="Después de la misión"
@@ -190,7 +203,7 @@ export default function AllInclusive() {
                 "Acompañamiento permanente",
               ]}
             />
-            <PhotoCard src="/images/phone.jpg" alt="Toda la agenda de la misión en tu móvil" />
+            <PhotoCard imageUrl={MEDIA_PHONE.imageUrl} alt={MEDIA_PHONE.alt} />
           </Column>
         </motion.div>
       </div>

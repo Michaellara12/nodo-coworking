@@ -1,9 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { EASE } from "./Reveal";
 import { ArrowUpRight } from "./icons";
+import StreamMedia from "./StreamMedia";
+import { MEDIA_PLANTA } from "@/lib/media";
 
 const LINES = ["Aprende del", "conocimiento de otros."];
 
@@ -16,13 +17,12 @@ export default function Hero() {
         transition={{ duration: 1, ease: EASE }}
         className="relative h-[calc(100svh-7.25rem)] min-h-[540px] overflow-hidden rounded-[28px] lg:h-[calc(100svh-2.5rem)]"
       >
-        <Image
-          src="/images/innfiltrados/mision-1.jpg"
-          alt="Innfiltrados recorriendo la planta de producción de una empresa anfitriona"
-          fill
-          priority
+        <StreamMedia
+          imageUrl={MEDIA_PLANTA.imageUrl}
+          streamSrc={MEDIA_PLANTA.streamSrc}
+          alt={MEDIA_PLANTA.alt}
           sizes="100vw"
-          className="object-cover"
+          priority
         />
         <div className="absolute inset-0 bg-ink/45" />
 

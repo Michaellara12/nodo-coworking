@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
+import StreamMedia from "./StreamMedia";
+import { MEDIA_NETWORKING } from "@/lib/media";
 
 /*
  * Eventos con scroll horizontal pineado (como el .living-track del original):
@@ -124,7 +125,7 @@ export default function EventsTrack() {
             </motion.div>
           ))}
 
-          {/* foto de cierre del carril */}
+          {/* video de cierre del carril */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -132,12 +133,11 @@ export default function EventsTrack() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="relative min-h-[260px] shrink-0 overflow-hidden rounded-[26px] lg:w-[460px]"
           >
-            <Image
-              src="/images/insta-1.jpg"
-              alt="Una noche de networking entre innfiltrados"
-              fill
+            <StreamMedia
+              imageUrl={MEDIA_NETWORKING.imageUrl}
+              streamSrc={MEDIA_NETWORKING.streamSrc}
+              alt={MEDIA_NETWORKING.alt}
               sizes="(min-width: 1024px) 460px, 100vw"
-              className="object-cover"
             />
           </motion.div>
         </motion.div>

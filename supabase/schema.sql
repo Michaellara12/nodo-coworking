@@ -32,7 +32,7 @@ create table if not exists public.misiones (
   moneda text not null default 'USD' check (moneda in ('USD', 'COP')),
   color text not null default 'yellow'
     check (color in ('yellow', 'red', 'blue', 'green', 'orange', 'lilac', 'purple')),
-  imagen text not null default '/images/innfiltrados/mision-1.jpg',
+  imagen text not null default 'https://imagedelivery.net/qw62OEWCF533UZ-cfR0n4A/1bee0adb-7b09-449b-e37c-0a508ba08800/public',
   estado text not null default 'abierta' check (estado in ('abierta', 'agotada', 'finalizada')),
   created_at timestamptz not null default now()
 );
@@ -171,7 +171,7 @@ values
     'Ocho días dentro del ecosistema que fabrica el futuro: plantas 4.0 que operan a oscuras, gigantes del e-commerce y hardware que pasa de idea a producto en semanas.',
     array['8 días · 7 noches', 'Vuelos internos y hoteles', '6 empresas anfitrionas', 'Traducción simultánea', 'Playbook de hallazgos', 'Seguro de viaje'],
     array['Innovación', 'Manufactura 4.0', 'IA aplicada'],
-    24, 8900, 'USD', 'red', '/images/innfiltrados/mision-1.jpg', 'abierta'
+    24, 8900, 'USD', 'red', 'https://imagedelivery.net/qw62OEWCF533UZ-cfR0n4A/1bee0adb-7b09-449b-e37c-0a508ba08800/public', 'abierta'
   ),
   (
     'Sector Finanzas',
@@ -180,7 +180,7 @@ values
     'El backstage de Wall Street y de las fintech que están reinventando el dinero: banca centenaria, neobancos y venture capital, cara a cara y sin libreto.',
     array['6 días · 5 noches', 'Hotel en Manhattan', '5 empresas anfitrionas', 'Sesiones con C-levels', 'Playbook de hallazgos', 'Seguro de viaje'],
     array['Fintech', 'Banca digital', 'Venture capital'],
-    20, 6900, 'USD', 'blue', '/images/innfiltrados/mision-2.jpg', 'abierta'
+    20, 6900, 'USD', 'blue', 'https://imagedelivery.net/qw62OEWCF533UZ-cfR0n4A/f247ba1b-5804-487f-551a-05c1dba0d600/public', 'abierta'
   ),
   (
     'Siendo sostenibles',
@@ -189,7 +189,7 @@ values
     'Economía circular en serio: ciudades rumbo a carbono neutral, industrias regenerativas y marcas que convirtieron la sostenibilidad en su mejor negocio.',
     array['7 días · 6 noches', 'Vuelos internos y hoteles', '6 empresas anfitrionas', 'Workshops de síntesis', 'Playbook de hallazgos', 'Seguro de viaje'],
     array['ESG', 'Economía circular', 'Energía'],
-    22, 7400, 'USD', 'green', '/images/meeting.jpg', 'abierta'
+    22, 7400, 'USD', 'green', 'https://imagedelivery.net/qw62OEWCF533UZ-cfR0n4A/906bbac6-d31d-484c-c900-5c83f9c2e300/public', 'abierta'
   ),
   (
     'Ciudades inteligentes',
@@ -198,7 +198,7 @@ values
     'Gobierno digital, movilidad autónoma y urbanismo guiado por datos: así se opera una ciudad que piensa, decide y aprende en tiempo real.',
     array['8 días · 7 noches', 'Vuelos internos y hoteles', '7 empresas anfitrionas', 'Traducción simultánea', 'Playbook de hallazgos', 'Seguro de viaje'],
     array['Smart cities', 'Movilidad', 'GovTech'],
-    20, 7900, 'USD', 'lilac', '/images/insta-4.jpg', 'abierta'
+    20, 7900, 'USD', 'lilac', 'https://imagedelivery.net/qw62OEWCF533UZ-cfR0n4A/e9854b31-99ee-4d87-708c-ac4ab74ba800/public', 'abierta'
   ),
   (
     'Ruta de la innovación paisa',
@@ -207,7 +207,7 @@ values
     'Dos días dentro del ecosistema que convirtió a Medellín en referente: centros de innovación, plantas de manufactura y las startups que están escalando región.',
     array['2 días · 1 noche', 'Hotel y alimentación', '4 empresas anfitrionas', 'Sesiones con líderes', 'Playbook de hallazgos'],
     array['Innovación', 'Startups', 'Manufactura'],
-    24, 3900000, 'COP', 'orange', '/images/insta-1.jpg', 'abierta'
+    24, 3900000, 'COP', 'orange', 'https://imagedelivery.net/qw62OEWCF533UZ-cfR0n4A/d5aec0ea-b7cd-4fae-4454-ad7776328000/public', 'abierta'
   ),
   (
     'Bogotá corporativa por dentro',
@@ -216,6 +216,6 @@ values
     'Un recorrido por el backstage de la banca, el retail y los medios: cómo operan, deciden y se transforman las compañías más grandes del país.',
     array['1 día completo', 'Alimentación curada', '3 empresas anfitrionas', 'Q&A con directivos', 'Síntesis de hallazgos'],
     array['Banca', 'Retail', 'Medios'],
-    30, 1900000, 'COP', 'yellow', '/images/insta-3.jpg', 'abierta'
+    30, 1900000, 'COP', 'yellow', 'https://imagedelivery.net/qw62OEWCF533UZ-cfR0n4A/6606a721-55b8-44b0-dd1d-d5a75e909000/public', 'abierta'
   )
 on conflict do nothing;

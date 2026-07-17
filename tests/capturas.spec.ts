@@ -23,7 +23,8 @@ const MISIONES = [
     precio: 6900,
     color: "blue",
     tags: ["Fintech", "Banca digital"],
-    imagen: "/images/innfiltrados/mision-2.jpg",
+    imagen:
+      "https://imagedelivery.net/qw62OEWCF533UZ-cfR0n4A/f247ba1b-5804-487f-551a-05c1dba0d600/public",
   }),
   misionFixture({
     id: "44444444-4444-4444-8444-444444444444",
@@ -33,7 +34,8 @@ const MISIONES = [
     precio: 7400,
     color: "green",
     tags: ["ESG", "Economía circular"],
-    imagen: "/images/meeting.jpg",
+    imagen:
+      "https://imagedelivery.net/qw62OEWCF533UZ-cfR0n4A/906bbac6-d31d-484c-c900-5c83f9c2e300/public",
   }),
   misionFixture({
     id: "55555555-5555-4555-8555-555555555555",
@@ -46,7 +48,8 @@ const MISIONES = [
     color: "orange",
     cupos: 24,
     tags: ["Innovación", "Startups"],
-    imagen: "/images/insta-1.jpg",
+    imagen:
+      "https://imagedelivery.net/qw62OEWCF533UZ-cfR0n4A/d5aec0ea-b7cd-4fae-4454-ad7776328000/public",
   }),
 ];
 

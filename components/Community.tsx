@@ -1,18 +1,18 @@
-import Image from "next/image";
 import { Reveal } from "./Reveal";
 import { ArrowUpRight } from "./icons";
+import StreamMedia from "./StreamMedia";
+import { MEDIA_TEAMWORK, MEDIA_TERRACE } from "@/lib/media";
 
 export default function Community() {
   return (
     <section id="comunidad" className="grid gap-5 lg:grid-cols-3">
       <Reveal className="h-full">
         <div className="group relative h-64 overflow-hidden rounded-[28px] sm:h-80 lg:h-full lg:min-h-[500px]">
-          <Image
-            src="/images/insta-3.jpg"
-            alt="Innfiltrados trabajando en equipo durante una sesión de síntesis"
-            fill
+          <StreamMedia
+            imageUrl={MEDIA_TEAMWORK.imageUrl}
+            streamSrc={MEDIA_TEAMWORK.streamSrc}
+            alt={MEDIA_TEAMWORK.alt}
             sizes="(min-width: 1024px) 33vw, 100vw"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
         </div>
       </Reveal>
@@ -39,12 +39,11 @@ export default function Community() {
 
       <Reveal delay={0.2} className="h-full">
         <div className="group relative h-64 overflow-hidden rounded-[28px] sm:h-80 lg:h-full lg:min-h-[500px]">
-          <Image
-            src="/images/terrace.jpg"
-            alt="Innfiltrados compartiendo después de un recorrido"
-            fill
+          <StreamMedia
+            imageUrl={MEDIA_TERRACE.imageUrl}
+            streamSrc={MEDIA_TERRACE.streamSrc}
+            alt={MEDIA_TERRACE.alt}
             sizes="(min-width: 1024px) 33vw, 100vw"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
         </div>
       </Reveal>

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Marquee from "@/components/Marquee";
 import SectionBanner from "@/components/SectionBanner";
 import EventsTrack from "@/components/EventsTrack";
+import StreamMedia from "@/components/StreamMedia";
 import { Reveal } from "@/components/Reveal";
 import { ArrowUpRight } from "@/components/icons";
+import { MEDIA_LIDERES, MEDIA_WORKSHOP } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: "Comunidad",
@@ -36,13 +37,12 @@ export default function Comunidad() {
       <section className="grid gap-5 lg:grid-cols-2">
         <Reveal className="h-full">
           <div className="group relative h-72 overflow-hidden rounded-[28px] sm:h-96 lg:h-full lg:min-h-[560px]">
-            <Image
-              src="/images/innfiltrados/mision-2.jpg"
+            <StreamMedia
+              imageUrl={MEDIA_LIDERES.imageUrl}
+              streamSrc={MEDIA_LIDERES.streamSrc}
               alt="La comunidad innfiltrada en una sesión con líderes"
-              fill
-              priority
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              priority
             />
           </div>
         </Reveal>
@@ -105,12 +105,11 @@ export default function Comunidad() {
         </Reveal>
         <Reveal delay={0.12} className="h-full">
           <div className="group relative h-72 overflow-hidden rounded-[28px] sm:h-96 lg:h-full lg:min-h-[440px]">
-            <Image
-              src="/images/meeting.jpg"
+            <StreamMedia
+              imageUrl={MEDIA_WORKSHOP.imageUrl}
+              streamSrc={MEDIA_WORKSHOP.streamSrc}
               alt="Innfiltrados en un workshop de síntesis"
-              fill
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </div>
         </Reveal>

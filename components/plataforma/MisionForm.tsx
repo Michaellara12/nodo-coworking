@@ -12,19 +12,13 @@ import {
   type MisionColor,
   type MisionEstado,
 } from "@/lib/types";
+import { MISION_IMAGENES } from "@/lib/media";
 
 /* Formulario de misión (crear/editar) para el panel admin. */
 
 const COLORES: MisionColor[] = ["yellow", "red", "blue", "green", "orange", "lilac", "purple"];
 
-const IMAGENES = [
-  { src: "/images/innfiltrados/mision-1.jpg", label: "Recorrido en planta" },
-  { src: "/images/innfiltrados/mision-2.jpg", label: "Sesión con líderes" },
-  { src: "/images/meeting.jpg", label: "Workshop" },
-  { src: "/images/insta-1.jpg", label: "Networking" },
-  { src: "/images/insta-3.jpg", label: "Trabajo en equipo" },
-  { src: "/images/insta-4.jpg", label: "Lounge" },
-];
+const IMAGENES = MISION_IMAGENES;
 
 export type MisionFormValues = Omit<Mision, "id" | "created_at">;
 

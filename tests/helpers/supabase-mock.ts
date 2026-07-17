@@ -49,7 +49,8 @@ export function misionFixture(extra: Partial<Record<string, unknown>> = {}) {
     precio: 8900,
     moneda: "USD",
     color: "red",
-    imagen: "/images/innfiltrados/mision-1.jpg",
+    imagen:
+      "https://imagedelivery.net/qw62OEWCF533UZ-cfR0n4A/1bee0adb-7b09-449b-e37c-0a508ba08800/public",
     estado: "abierta",
     created_at: "2026-01-01T00:00:00Z",
     ...extra,
